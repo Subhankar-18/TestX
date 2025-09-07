@@ -1,0 +1,88 @@
+/* Navbar base style */
+.custom-navbar {
+  background-color: transparent;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+.custom-navbar .nav-link {
+  color: white;
+  font-weight: 500;
+  transition: color 0.4s ease;
+}
+
+.custom-navbar .nav-link.signin {
+  color: rgb(240, 237, 237);
+}
+
+.custom-navbar .nav-link.signup {
+  color: rgb(249, 246, 246);
+}
+
+.custom-navbar .navbar-brand {
+  color: white;
+  font-weight: bold;
+}
+
+/* Navbar after scroll */
+.custom-navbar.scrolled {
+  background-color: #220137; /* purple background */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.custom-navbar.scrolled .nav-link.signin {
+  color: #de70ee; /* Sign In gold */
+}
+
+.custom-navbar.scrolled .nav-link.signup {
+  color: #f86a6a; /* Sign Up cyan */
+}
+
+.custom-navbar.scrolled .nav-link:hover,
+.custom-navbar.scrolled .navbar-brand:hover {
+  color: #ffffff;
+}
+
+/* Hero overlay */
+.homepage .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(165, 148, 195, 0.3); /* dark purple */
+  z-index: 1;
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: rgb(35, 1, 43);
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(230, 227, 227, 0.7);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  text-shadow: 1px 1px 4px rgba(245, 242, 242, 0.7);
+}
+
+/* Features section */
+.features-section {
+  background-color: #29024f;
+}
+
+/* Footer */
+footer {
+  background-color: #0f0014;
+}
