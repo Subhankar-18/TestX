@@ -1,0 +1,32 @@
+.signup-container {
+  display: flex;
+  height: 100vh;
+}
+
+.signup-image {
+  position: relative;
+  width: 45%; /* or whatever size you want */
+  min-height: 100vh;
+}
+
+.signup-form {
+  flex: 1;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #755a75, #cac8cb); /* soft gradient */
+}
+
+
+.btn-signup {
+  background-color: #7202b3; /* Purple */
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+.btn-signup:hover {
+  background-color: #b37bef; /* Darker purple on hover */
+}
+
+

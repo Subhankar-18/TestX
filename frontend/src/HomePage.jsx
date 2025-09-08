@@ -32,7 +32,7 @@ function Homepage() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/aboutus">About</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
             <li className="nav-item"><Link className="nav-link signin" to="/signin">Sign In</Link></li>
             <li className="nav-item"><Link className="nav-link signup" to="/signup">Sign Up</Link></li>

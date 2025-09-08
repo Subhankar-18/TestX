@@ -53,7 +53,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(165, 148, 195, 0.3); /* dark purple */
+  background-color: rgba(165, 148, 195, 0.3); 
   z-index: 1;
 }
 
@@ -79,7 +79,7 @@
 
 /* Features section */
 .features-section {
-  background-color: #29024f;
+  background-color: #7801b9;
 }
 
 /* Footer */

@@ -1,0 +1,44 @@
+.aboutus-hero {
+  position: relative;
+  text-align: center;
+}
+
+.aboutus-hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+.aboutus-hero h1 {
+  font-size: 3rem;
+  color: white;
+  z-index: 2;
+}
+
+.aboutus-hero p {
+  z-index: 2;
+  color: #ddd;
+}
+
+.breadcrumb-link {
+  color: #f7f8f4;
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.w-48 {
+  width: 48%;
+}
+
+.blockquote-footer {
+  background: transparent !important; /* remove background */
+  border: none !important;            /* remove borders */
+  color: #3d0254; 
+}
+
