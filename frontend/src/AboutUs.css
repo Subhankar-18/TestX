@@ -1,44 +1,54 @@
-.aboutus-hero {
+.aboutus-page .aboutus-hero {
   position: relative;
-  text-align: center;
+  color: var(--text-light);
 }
 
-.aboutus-hero .overlay {
+.aboutus-page .overlay {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  height: 100%;
+  background-color: rgba(23, 24, 24, 0.3); /* semi-transparent navy overlay */
+  z-index: 1;
+  pointer-events: none; /* let clicks pass through */
 }
 
-.aboutus-hero h1 {
-  font-size: 3rem;
-  color: white;
-  z-index: 2;
-}
-
-.aboutus-hero p {
-  z-index: 2;
-  color: #ddd;
+.aboutus-page .aboutus-hero .text-center.position-relative {
+  position: relative;
+  z-index: 2; /* keep text above overlay */
 }
 
 .breadcrumb-link {
-  color: #f7f8f4;
+  color: var(--text-light);
   text-decoration: none;
 }
 
 .breadcrumb-link:hover {
+  color: var(--light-green-accent);
   text-decoration: underline;
 }
 
-.w-48 {
-  width: 48%;
+.quote-box {
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  background-color: var(--deep-green); 
+  color: var(--text-light); 
+  z-index: 2; 
+  position: relative;
 }
 
-.blockquote-footer {
-  background: transparent !important; /* remove background */
-  border: none !important;            /* remove borders */
-  color: #3d0254; 
+.quote-box blockquote p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 10px;
 }
+
+.quote-box blockquote footer {
+  font-size: 0.9rem;
+  color: var(--light-green-accent);
+}
+
 

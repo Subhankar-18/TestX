@@ -34,9 +34,9 @@ function AboutUs() {
       {/* Content Section */}
       <div className="container py-5">
         <div className="row align-items-center">
-          {/* Left side QUOTE instead of images */}
+          {/* Left side QUOTE */}
           <div className="col-md-6 d-flex justify-content-center">
-            <div className="quote-box p-4 rounded shadow text-center bg-light">
+            <div className="quote-box p-4 rounded shadow text-center">
                 <blockquote className="blockquote mb-0">
                 <p className="mb-3 fst-italic">
                     "An investment in knowledge pays the best interest."

@@ -1,32 +1,46 @@
 .signup-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .signup-image {
-  position: relative;
-  width: 45%; /* or whatever size you want */
-  min-height: 100vh;
+  flex: 1;
 }
 
 .signup-form {
   flex: 1;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #755a75, #cac8cb); /* soft gradient */
+  background-color: var(--background-light);
 }
 
+.signup-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.text-theme {
+  color: var(--deep-green);
+}
 
 .btn-signup {
-  background-color: #7202b3; /* Purple */
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  transition: 0.3s ease;
+  background-color: var(--deep-green);
+  color: var(--text-light);
+  font-weight: 600;
+  padding: 10px 0;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .btn-signup:hover {
-  background-color: #b37bef; /* Darker purple on hover */
+  background-color: var(--light-green-accent);
+  color: var(--navy);
 }
 
+.link-theme {
+  color: var(--light-green-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
 
+.link-theme:hover {
+  text-decoration: underline;
+}

@@ -1,33 +1,50 @@
+
 .contactus-page .contactus-hero {
-  position: relative;
+    position: relative;
+    color: var(--text-light);
 }
 
 .contactus-page .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(26, 26, 46, 0.6); /* dark overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 31, 63, 0.3); /* semi-transparent navy overlay */
+    z-index: 1; /* stays behind content */
+    pointer-events: none; /* allows clicks to pass through */
+}
+
+.contactus-page .contactus-hero .text-center.position-relative {
+    position: relative;
+    z-index: 2; /* make text appear above overlay */
 }
 
 .breadcrumb-link {
-  color: white;
-  text-decoration: none;
+    color: var(--text-light);
+    text-decoration: none;
+    z-index: 2; /* above overlay */
 }
 
 .breadcrumb-link:hover {
-  text-decoration: underline;
+    color: var(--light-green-accent);
+    text-decoration: underline;
 }
 
+
 .info-box, .quote-box {
-  max-width: 400px;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .info-box {
-  background-color: #f4f4f5; /* light background */
+    background-color: var(--background-light); /* light background */
+    color: var(--text-dark);
 }
 
 .quote-box {
-  background-color: #eceff1;
+    background-color:  #013c30; /* deep green for contrast */
+    color: var(--text-light);
 }

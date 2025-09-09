@@ -16,12 +16,11 @@ function ContactUs() {
           backgroundPosition: "center",
           height: "50vh",
           position: "relative",
-          color: "white",
         }}
       >
         <div className="overlay"></div>
         <div className="text-center position-relative">
-          <h1 className="fw-bold">Contact Us</h1>
+          <h1 className="fw-bold text-light">Contact Us</h1>
           <p>
             <a href="/" className="breadcrumb-link">
               Home
@@ -35,25 +34,23 @@ function ContactUs() {
       <div className="container py-5">
         <div className="row align-items-center">
           {/* Left side: Contact Info */}
-          <div className="col-md-6 d-flex justify-content-center">
-            <div className="info-box p-4 rounded shadow text-center bg-light">
-              <h5 className="mb-3">Get in Touch</h5>
-              <p><strong>Email:</strong>support@testx.com</p>
+          <div className="col-md-6 d-flex justify-content-center mb-4 mb-md-0">
+            <div className="info-box p-4 rounded shadow text-center">
+              <h5 className="mb-3 text-deep-green">Get in Touch</h5>
+              <p><strong>Email:</strong> support@testx.com</p>
               <p><strong>Phone:</strong> +91 12345 67890</p>
-              <p><strong>Address:</strong>13 Main Street, City, India</p>
-              
-            
+              <p><strong>Address:</strong> 13 Main Street, City, India</p>
             </div>
           </div>
 
           {/* Right side: Quote / Message */}
           <div className="col-md-6 d-flex justify-content-center">
-            <div className="quote-box p-4 rounded shadow text-center bg-light">
+            <div className="quote-box p-4 rounded shadow text-center">
               <blockquote className="blockquote mb-0">
-                <p className="mb-3 fst-italic">
+                <p className="mb-3 fst-italic text-light">
                   "Exams should measure knowledge, not stress."
                 </p>
-                <footer className="blockquote-footer mt-2">
+                <footer className="blockquote-footer text-light mt-2">
                   TestX Team
                 </footer>
               </blockquote>

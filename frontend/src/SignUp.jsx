@@ -12,21 +12,60 @@ function Signup() {
     password: ""
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const bgImage = process.env.PUBLIC_URL + "/images/signup.jpg";
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    if (!form.email.includes("@")) {
+      setError("Invalid email address");
+      return false;
+    }
+    if (form.password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return false;
+    }
+    if (!/^\d{10}$/.test(form.phone)) {
+      setError("Phone number must be 10 digits");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup submitted:", form);
-    // later: send to backend API
+    if (!validateForm()) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:8080/user/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+
+      if (response.ok) {
+        alert("Signup successful! Redirecting to Sign In...");
+        window.location.href = "/signin";
+      } else {
+        const errorMsg = await response.text();
+        setError(errorMsg || "Signup failed. Please try again.");
+      }
+    } catch (err) {
+      setError("Server error. Please try later.");
+      console.error("Signup error:", err);
+    }
+    setLoading(false);
   };
 
   return (
     <div className="signup-container">
-      {/* Left side background adding photo*/}
+      {/* Left side background photo */}
       <div
         className="signup-image"
         style={{
@@ -36,12 +75,13 @@ function Signup() {
         }}
       ></div>
 
-      {/* Right side with signup form*/}
+      {/* Right side with signup form */}
       <div className="signup-form d-flex align-items-center justify-content-center">
         <form onSubmit={handleSubmit} className="p-4 shadow rounded bg-white w-75">
           <h3 className="text-center mb-4">Create Account</h3>
 
-          {/* First Name */}
+          {error && <div className="alert alert-danger">{error}</div>}
+
           <div className="mb-3">
             <label className="form-label">First Name</label>
             <input
@@ -50,12 +90,10 @@ function Signup() {
               value={form.firstName}
               onChange={handleChange}
               className="form-control"
-              placeholder="Enter your first name"
               required
             />
           </div>
 
-          {/* Last Name */}
           <div className="mb-3">
             <label className="form-label">Last Name</label>
             <input
@@ -64,12 +102,10 @@ function Signup() {
               value={form.lastName}
               onChange={handleChange}
               className="form-control"
-              placeholder="Enter your last name"
               required
             />
           </div>
 
-          {/* Username */}
           <div className="mb-3">
             <label className="form-label">Username</label>
             <input
@@ -78,12 +114,10 @@ function Signup() {
               value={form.username}
               onChange={handleChange}
               className="form-control"
-              placeholder="Choose a username"
               required
             />
           </div>
 
-          {/* Email */}
           <div className="mb-3">
             <label className="form-label">Email</label>
             <input
@@ -92,12 +126,10 @@ function Signup() {
               value={form.email}
               onChange={handleChange}
               className="form-control"
-              placeholder="abc@example.com"
               required
             />
           </div>
 
-          {/* Phone */}
           <div className="mb-3">
             <label className="form-label">Phone</label>
             <input
@@ -106,12 +138,10 @@ function Signup() {
               value={form.phone}
               onChange={handleChange}
               className="form-control"
-              placeholder="Enter phone number"
               required
             />
           </div>
 
-          {/* Password */}
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
@@ -120,16 +150,13 @@ function Signup() {
               value={form.password}
               onChange={handleChange}
               className="form-control"
-              placeholder="Enter password"
               required
             />
           </div>
 
-          <button type="submit" className="btn btn-signup w-100">
-          Sign Up
+          <button type="submit" className="btn btn-signup w-100" disabled={loading}>
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
-
-           {/* redirect to signin */}
 
           <div className="text-center mt-3">
             <small>

@@ -1,88 +1,210 @@
-/* Navbar base style */
-.custom-navbar {
-  background-color: transparent;
-  transition: background-color 0.4s ease, box-shadow 0.4s ease;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 10;
+/* Define your corporate color palette */
+:root {
+    --navy: #001f3f; /* Deep Navy Blue */
+    --deep-green: #004d40; /* Dark Teal/Deep Green */
+    --light-green-accent: #3cb371; /* A brighter green for accents and hover */
+    --light-navy-accent: #0a3356;
+    --text-light: #f8f8f8;
+    --text-dark: #2c3e50;
+    --background-light: #f0f8ff;
+    --shadow-color: rgba(0, 0, 0, 0.25);
 }
 
-.custom-navbar .nav-link {
-  color: white;
-  font-weight: 500;
-  transition: color 0.4s ease;
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    margin: 0;
+    line-height: 1.6;
 }
 
-.custom-navbar .nav-link.signin {
-  color: rgb(240, 237, 237);
+/* --- Top Utility Bar --- */
+.top-utility-bar {
+    background-color: var(--deep-green);
+    font-size: 0.85em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.custom-navbar .nav-link.signup {
-  color: rgb(249, 246, 246);
+.top-utility-bar .small-link {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    transition: color 0.3s ease;
 }
 
-.custom-navbar .navbar-brand {
-  color: white;
-  font-weight: bold;
+.top-utility-bar .small-link:last-child {
+    border-right: none;
 }
 
-/* Navbar after scroll */
-.custom-navbar.scrolled {
-  background-color: #220137; /* purple background */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+.top-utility-bar .small-link:hover {
+    color: var(--light-green-accent);
 }
 
-.custom-navbar.scrolled .nav-link.signin {
-  color: #de70ee; /* Sign In gold */
+/* --- Main Navbar --- */
+.main-navbar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1030; /* Make sure it stays above content */
+    transition: background-color 0.3s, padding 0.3s;
+    position: fixed; /* <--- This makes it stick to top */
 }
 
-.custom-navbar.scrolled .nav-link.signup {
-  color: #f86a6a; /* Sign Up cyan */
+.main-navbar.scrolled {
+    background-color: rgba(1, 78, 57, 0.85); /* solid on scroll */
+    padding: 0.5rem 1rem; /* reduce padding on scroll */
 }
 
-.custom-navbar.scrolled .nav-link:hover,
-.custom-navbar.scrolled .navbar-brand:hover {
-  color: #ffffff;
+.main-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light) !important;
 }
 
-/* Hero overlay */
-.homepage .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(165, 148, 195, 0.3); 
-  z-index: 1;
+.main-navbar .nav-link {
+    color: var(--text-light) !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0 15px;
+    transition: color 0.3s ease;
 }
 
-/* Hero content */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: rgb(35, 1, 43);
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link.active {
+    color: var(--light-green-accent) !important;
 }
 
-.hero-title {
-  font-size: 4rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 6px rgba(230, 227, 227, 0.7);
+.main-navbar .custom-select {
+    background-color: transparent;
+    color: var(--text-light);
+    border-color: rgba(255, 255, 255, 0.3);
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23f8f8f8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
 }
 
-.hero-subtitle {
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  text-shadow: 1px 1px 4px rgba(245, 242, 242, 0.7);
+.main-navbar .custom-select option {
+    background-color: var(--navy);
+    color: var(--text-light);
 }
 
-/* Features section */
-.features-section {
-  background-color: #7801b9;
+.main-navbar .btn-outline-light {
+    border-color: var(--light-green-accent);
+    color: var(--light-green-accent);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Footer */
-footer {
-  background-color: #0f0014;
+.main-navbar .btn-outline-light:hover {
+    background-color: var(--light-green-accent);
+    color: var(--navy);
+}
+
+/* --- Hero Section --- */
+.hero {
+    position: relative;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 33, 65, 0.7);
+    z-index: 1;
+}
+
+.hero-content-container {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.hero-main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-primary-theme {
+    background-color: var(--deep-green);
+    color: var(--text-light);
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary-theme:hover {
+    background-color: var(--light-green-accent);
+    color: var(--navy);
+}
+
+/* --- Services/Features Section --- */
+.services-overview-section {
+    background-color: var(--background-light);
+    padding: 80px 0;
+}
+
+.services-overview-section h2 {
+    color: var(--navy);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.service-card {
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.service-card-title {
+    color: var(--deep-green);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.service-card-text {
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+/* --- Footer --- */
+.footer-corporate {
+    background-color: var(--navy);
+    color: var(--text-light);
+    padding: 20px 0;
+    font-size: 0.9em;
 }
