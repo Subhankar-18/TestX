@@ -10,7 +10,14 @@
 .signup-form {
   flex: 1;
   background-color: var(--background-light);
+
+  ::placeholder {
+  color: rgba(9, 1, 70, 0.5); 
 }
+
+}
+
+
 
 .signup-card {
   background-color: white;
@@ -44,3 +51,5 @@
 .link-theme:hover {
   text-decoration: underline;
 }
+
+

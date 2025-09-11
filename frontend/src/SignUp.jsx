@@ -91,6 +91,7 @@ function Signup() {
               onChange={handleChange}
               className="form-control"
               required
+              placeholder="Enter a First name"
             />
           </div>
 
@@ -103,6 +104,7 @@ function Signup() {
               onChange={handleChange}
               className="form-control"
               required
+              placeholder="Enter a Last name"
             />
           </div>
 
@@ -115,6 +117,7 @@ function Signup() {
               onChange={handleChange}
               className="form-control"
               required
+              placeholder="Enter a unique username"
             />
           </div>
 
@@ -127,6 +130,7 @@ function Signup() {
               onChange={handleChange}
               className="form-control"
               required
+              placeholder="example@email.com"
             />
           </div>
 
@@ -139,6 +143,7 @@ function Signup() {
               onChange={handleChange}
               className="form-control"
               required
+              placeholder="Please enter 10 digits"
             />
           </div>
 
@@ -151,6 +156,7 @@ function Signup() {
               onChange={handleChange}
               className="form-control"
               required
+              placeholder="Must be atleast 6 characters"
             />
           </div>
 
