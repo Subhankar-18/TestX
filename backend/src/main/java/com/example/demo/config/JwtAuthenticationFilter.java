@@ -68,7 +68,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }}
             else{
-                System.out.println("Toekn in not valid");
+                System.out.println("Token in not valid");
             }
 
             filterChain.doFilter(request, response);
