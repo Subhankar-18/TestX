@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Pages
+// Corrected Imports
+// The file names on your disk should match these exactly.
 import Homepage from './HomePage.jsx'; 
 import Signup from "./SignUp.jsx"; 
 import Signin from './Signin.jsx';
@@ -13,6 +14,7 @@ import Normalpage from './Normalpage.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
 import Aboutus from "./AboutUs.jsx";
 import Contact from "./ContactUs.jsx";
+import QuestionPage from './Admin/QuestionPage.jsx';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
             <Route path="/adminprofile" element={<Adminprofile />} />
             <Route path="/category" element={<Category />} />
             <Route path="/quiz" element={<Quiz/>} />
+            <Route path="/questions" element={<QuestionPage />} />
+            <Route path="/questions/:qid" element={<QuestionPage />} />
           </Route>
         </Routes>
       </Router>
