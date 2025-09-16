@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
 
 @RestController
+@CrossOrigin(
+    origins = "http://localhost:3000")
 @RequestMapping("/quiz")
 public class QuizController
 {
@@ -52,7 +55,7 @@ public class QuizController
     }
 
     //delete quiz
-    @DeleteMapping
+    @DeleteMapping("/{qid}")
     public void delete(@PathVariable("qid")Long qid)
     {
         this.quizService.deleteQuiz(qid);

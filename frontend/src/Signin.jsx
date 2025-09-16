@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa"; 
-import "./Signin.css"; 
+import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import "./Signin.css";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -25,6 +25,9 @@ const Signin = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const userRole = userResponse.data.authorities[0].authority;
+      
+      // FIX: Store the username in localStorage after successful authentication
+      localStorage.setItem("username", username); 
       localStorage.setItem("role", userRole);
 
       if (userRole === "NORMAL") {
@@ -38,6 +41,10 @@ const Signin = () => {
       console.error("Sign-in failed:", error);
       alert("Sign-in failed. Please check your username and password.");
     }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -89,7 +96,7 @@ const Signin = () => {
                 />
                 <span
                   className="toggle-password"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={toggleShowPassword}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>

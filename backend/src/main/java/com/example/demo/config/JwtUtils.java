@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtUtils {
 
-    private static final String SECRET_KEY = "examportalexamportalexamportal1234"; // must be >= 32 chars
+    private static final String SECRET_KEY = "examportalexamportalexamportal1234"; 
 
     private Key getSignKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());

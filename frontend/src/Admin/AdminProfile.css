@@ -1,0 +1,191 @@
+:root {
+    --navy: #001f3f;
+    --deep-green: #004d40;
+    --light-green-accent: #3cb371;
+    --light-navy-accent: #0a3356;
+    --text-light: #f8f8f8;
+    --text-dark: #2c3e50;
+    --background-light: #f0f8ff;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+}
+
+.admin-container {
+    min-height: 100vh;
+    background-color: var(--background-light);
+    display: flex;
+    flex-direction: row;
+}
+
+/* Sidebar */
+.admin-container .sidebar {
+    width: 220px;
+    background-color: var(--navy);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.admin-container .sidebar h4 {
+    color: var(--text-light);
+}
+
+.admin-container .sidebar .nav-link {
+    color: var(--text-light);
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.admin-container .sidebar .nav-link:hover {
+    background-color: var(--light-navy-accent);
+    color: var(--light-green-accent);
+    text-decoration: none;
+}
+
+.admin-container .sidebar .nav-link.active {
+    background-color: var(--light-green-accent);
+    color: var(--navy);
+}
+
+.admin-container .sidebar .btn-outline-light {
+    border-color: var(--light-green-accent);
+    color: var(--light-green-accent);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.admin-container .sidebar .btn-outline-light:hover {
+    background-color: var(--light-green-accent);
+    color: var(--navy);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+.admin-container .content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Top Navbar */
+.admin-container .content .admin-top-navbar {
+    background-color: var(--deep-green); /* corporate green */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centers the welcome text */
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+/* Welcome text with subtle animation */
+.admin-container .content .admin-top-navbar .welcome-text {
+    font-size: 2rem;      
+    font-weight: 700;
+    color:  rgb(203, 241, 239); 
+    text-align: center;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+/* Glow and grow effect on hover */
+.admin-container .content .admin-top-navbar .welcome-text:hover {
+    transform: scale(1.05); /* slightly larger */
+    text-shadow: 0 0 10px var(--light-green-accent), 0 0 20px var(--light-green-accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .admin-container .content .admin-top-navbar {
+        padding: 15px 20px;
+    }
+    .admin-container .content .admin-top-navbar .welcome-text {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* Profile Card */
+.admin-container .profile-card {
+    max-width: 400px;
+    background-color: white;
+    border-radius: 15px;
+    margin: auto;
+    padding: 30px 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-container .profile-card img {
+    object-fit: cover;
+    border: 4px solid var(--light-green-accent);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+.admin-container .profile-card h4 {
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 5px;
+}
+
+.admin-container .profile-card p {
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.admin-container .profile-card button {
+    margin-top: 15px;
+    border: 1px solid var(--light-green-accent);
+    color: var(--light-green-accent);
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.admin-container .profile-card button:hover {
+    background-color: var(--light-green-accent);
+    color: var(--navy);
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .admin-container {
+        flex-direction: column;
+    }
+    .admin-container .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+    }
+    .admin-container .sidebar ul.nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .admin-container .sidebar .nav-link {
+        margin: 5px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-container .content .admin-top-navbar .welcome-text {
+        font-size: 1.4rem;
+    }
+    .admin-container .profile-card {
+        width: 90%;
+        padding: 20px 15px;
+    }
+    .admin-container .profile-card img {
+        width: 100px;
+        height: 100px;
+    }
+}
