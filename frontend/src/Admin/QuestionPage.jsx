@@ -1,189 +1,326 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import './QuestionPage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const QuestionPage = () => {
-    const { qid } = useParams();
-    const [quizzes, setQuizzes] = useState([]);
-    const [questions, setQuestions] = useState([]);
-    const [newQuestion, setNewQuestion] = useState({
-        content: '',
-        option1: '',
-        option2: '',
-        option3: '',
-        option4: '',
-        answer: '',
-        quiz: { qid: null }
-    });
-    const [editingQuestion, setEditingQuestion] = useState(null);
-    const token = localStorage.getItem('token');
+  const { qid } = useParams();
+  const [quizzes, setQuizzes] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [newQuestion, setNewQuestion] = useState({
+    content: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    answer: '',
+    quiz: { qid: null },
+  });
+  const [editingQuestion, setEditingQuestion] = useState(null);
+  const token = localStorage.getItem('token');
 
-    // Fetch all quizzes
-    const fetchQuizzes = useCallback(async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/quiz/', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            setQuizzes(response.data);
-        } catch (error) {
-            console.error('Failed to fetch quizzes:', error);
-            alert('Failed to fetch quizzes. Check server connection and authorization.');
-        }
-    }, [token]);
+  // Fetch all quizzes
+  const fetchQuizzes = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/quiz/', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setQuizzes(response.data);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to fetch quizzes.');
+    }
+  }, [token]);
 
-    // Fetch questions for the selected quiz
-    const fetchQuestions = useCallback(async () => {
-        if (!qid) return;
-        try {
-            const response = await axios.get(`http://localhost:8080/question/quiz/all/${qid}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            setQuestions(response.data);
-            setNewQuestion(prev => ({ ...prev, quiz: { qid: qid } }));
-        } catch (error) {
-            console.error('Failed to fetch questions:', error);
-            alert('Failed to fetch questions. Check the quiz ID and server connection.');
-        }
-    }, [qid, token]);
+  // Fetch questions for selected quiz
+  const fetchQuestions = useCallback(async () => {
+    if (!qid) return;
+    try {
+      const response = await axios.get(`http://localhost:8080/question/quiz/all/${qid}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setQuestions(response.data);
+      setNewQuestion(prev => ({ ...prev, quiz: { qid } }));
+    } catch (error) {
+      console.error(error);
+      alert('Failed to fetch questions.');
+    }
+  }, [qid, token]);
 
-    useEffect(() => {
-        fetchQuizzes();
-        fetchQuestions();
-    }, [fetchQuizzes, fetchQuestions]);
+  useEffect(() => {
+    fetchQuizzes();
+    fetchQuestions();
+  }, [fetchQuizzes, fetchQuestions]);
 
-    // Handle form input changes for new or editing question
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (editingQuestion) {
-            setEditingQuestion(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        } else {
-            setNewQuestion(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        }
-    };
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    if (editingQuestion) {
+      setEditingQuestion(prev => ({ ...prev, [name]: value }));
+    } else {
+      setNewQuestion(prev => ({ ...prev, [name]: value }));
+    }
+  };
 
-    // Handle adding a new question
-    const handleAddQuestion = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post('http://localhost:8080/question/', newQuestion, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            alert('Question added successfully!');
-            fetchQuestions(); // Refresh the question list
-            // Clear the form
-            setNewQuestion({
-                content: '', option1: '', option2: '', option3: '', option4: '', answer: '', quiz: { qid: qid }
-            });
-        } catch (error) {
-            console.error('Failed to add question:', error);
-            alert('Failed to add question.');
-        }
-    };
+  const handleAddQuestion = async e => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:8080/question/', newQuestion, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert('Question added successfully!');
+      fetchQuestions();
+      setNewQuestion({ content: '', option1: '', option2: '', option3: '', option4: '', answer: '', quiz: { qid } });
+    } catch (error) {
+      console.error(error);
+      alert('Failed to add question.');
+    }
+  };
 
-    // Handle updating an existing question
-    const handleUpdateQuestion = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.put('http://localhost:8080/question/', editingQuestion, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            alert('Question updated successfully!');
-            fetchQuestions();
-            setEditingQuestion(null); // Exit edit mode
-        } catch (error) {
-            console.error('Failed to update question:', error);
-            alert('Failed to update question.');
-        }
-    };
+  const handleUpdateQuestion = async e => {
+    e.preventDefault();
+    try {
+      await axios.put('http://localhost:8080/question/', editingQuestion, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert('Question updated successfully!');
+      fetchQuestions();
+      setEditingQuestion(null);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to update question.');
+    }
+  };
 
-    return (
-        <div>
-            <h2>Question Management</h2>
-            
-            {/* Quiz Selection Section */}
-            <div>
-                <h3>Select a Quiz</h3>
-                <ul>
-                    {quizzes.map(quiz => (
-                        <li key={quiz.qid} style={{cursor: 'pointer', marginBottom: '10px'}}>
-                            <a href={`/questions/${quiz.qid}`}>{quiz.title}</a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+  const handleDeleteQuestion = async quesId => {
+    if (!window.confirm('Are you sure you want to delete this question?')) return;
+    try {
+      await axios.delete(`http://localhost:8080/question/${quesId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert('Question deleted successfully!');
+      fetchQuestions();
+    } catch (error) {
+      console.error(error);
+      alert('Failed to delete question.');
+    }
+  };
 
-            {/* Check if a quiz is selected (from URL) */}
-            {qid && (
-                <>
-                    {/* Add New/Update Question Form */}
-                    <hr/>
-                    <h3>
-                        {editingQuestion ? 'Update Question' : `Add New Question to Quiz: ${quizzes.find(q => q.qid == qid)?.title}`}
-                    </h3>
-                    <form onSubmit={editingQuestion ? handleUpdateQuestion : handleAddQuestion}>
-                        <div>
-                            <label>Question Content:</label>
-                            <textarea name="content" value={editingQuestion ? editingQuestion.content : newQuestion.content} onChange={handleInputChange} required />
-                        </div>
-                        <div>
-                            <label>Option 1:</label>
-                            <input type="text" name="option1" value={editingQuestion ? editingQuestion.option1 : newQuestion.option1} onChange={handleInputChange} required />
-                        </div>
-                        <div>
-                            <label>Option 2:</label>
-                            <input type="text" name="option2" value={editingQuestion ? editingQuestion.option2 : newQuestion.option2} onChange={handleInputChange} required />
-                        </div>
-                        <div>
-                            <label>Option 3:</label>
-                            <input type="text" name="option3" value={editingQuestion ? editingQuestion.option3 : newQuestion.option3} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Option 4:</label>
-                            <input type="text" name="option4" value={editingQuestion ? editingQuestion.option4 : newQuestion.option4} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Correct Answer:</label>
-                            <input type="text" name="answer" value={editingQuestion ? editingQuestion.answer : newQuestion.answer} onChange={handleInputChange} required />
-                        </div>
-                        <button type="submit">{editingQuestion ? 'Update Question' : 'Add Question'}</button>
-                        {editingQuestion && <button type="button" onClick={() => setEditingQuestion(null)}>Cancel</button>}
-                    </form>
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/signin';
+  };
 
-                    {/* See Questions Section */}
-                    <hr/>
-                    <h3>Questions for Quiz: {quizzes.find(q => q.qid == qid)?.title}</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Content</th>
-                                <th>Answer</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {questions.map(q => (
-                                <tr key={q.quesId}>
-                                    <td>{q.quesId}</td>
-                                    <td>{q.content}</td>
-                                    <td>{q.answer}</td>
-                                    <td>
-                                        <button onClick={() => setEditingQuestion(q)}>Edit</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </>
-            )}
+  return (
+    <div className="admin-container d-flex">        
+      {/* Sidebar */}
+      <div className="sidebar p-3">
+        <ul className="nav flex-column mt-2">
+          <li className="nav-item mb-2">
+            <a href="/adminpage" className="nav-link">
+              <i className="bi bi-speedometer2 me-2"></i> Dashboard
+            </a>
+          </li>
+          <li className="nav-item mb-2">
+            <a href="/category" className="nav-link">
+              <i className="bi bi-tags me-2"></i> Category
+            </a>
+          </li>
+          <li className="nav-item mb-2">
+            <a href="/quiz" className="nav-link">
+              <i className="bi bi-pencil-square me-2"></i> Quiz
+            </a>
+          </li>
+          <li className="nav-item mb-2">
+            <a href="/questions" className="nav-link active">
+              <i className="bi bi-question-circle me-2"></i> Questions
+            </a>
+          </li>
+          <li className="nav-item mb-2">
+            <a href="/adminprofile" className="nav-link">
+              <i className="bi bi-person-circle me-2"></i> Profile
+            </a>
+          </li>
+          <li className="nav-item mt-3">
+            <button
+              className="btn btn-outline-light w-100 d-flex align-items-center justify-content-start"
+              onClick={() => {
+                localStorage.clear();
+                window.location.href = "/signin";
+              }}
+            >
+              <i className="bi bi-box-arrow-right me-2"></i> Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+
+     
+      {/* Main Content */}
+      <div className="content flex-grow-1 p-4">       
+        <h1 className="main-heading">Questions</h1>
+
+        {/* Quiz Cards */}
+        <div className="section-container">
+          <h2 className="section-heading">Select a Quiz</h2>
+          <div className="quiz-cards-container">
+            {quizzes.map(quiz => (
+              <Link key={quiz.qid} to={`/questions/${quiz.qid}`} className="quiz-card">
+                <h3 className="quiz-card-title">{quiz.title}</h3>
+                <p className="quiz-card-info">Questions: {quiz.numberOfQuestions}</p>
+                <p className="quiz-card-info">Category: {quiz.category.title}</p>
+              </Link>
+            ))}
+          </div>
         </div>
-    );
+
+        {qid && (
+          <>
+{/* Add/Edit Question Form */}
+<div className="section-container">
+  <h2 className="section-heading">
+    {editingQuestion
+      ? 'Update Question'
+      : `Add Question for ${quizzes.find(q => q.qid == qid)?.title}`}
+  </h2>
+
+  <form
+    onSubmit={editingQuestion ? handleUpdateQuestion : handleAddQuestion}
+    className="question-form"
+  >
+    {/* Question Content */}
+    <div className="form-group">
+      <label>Question</label>
+      <textarea
+        name="content"
+        value={editingQuestion ? editingQuestion.content : newQuestion.content}
+        onChange={handleInputChange}
+        required
+        placeholder="Type your question here..."
+      />
+    </div>
+
+    {/* Options grouped in a row */}
+    <div className="options-row">
+      <div className="form-group">
+        <label>Option 1</label>
+        <input
+          type="text"
+          name="option1"
+          value={editingQuestion ? editingQuestion.option1 : newQuestion.option1}
+          onChange={handleInputChange}
+          required
+          placeholder="Option 1"
+        />
+      </div>
+      <div className="form-group">
+        <label>Option 2</label>
+        <input
+          type="text"
+          name="option2"
+          value={editingQuestion ? editingQuestion.option2 : newQuestion.option2}
+          onChange={handleInputChange}
+          required
+          placeholder="Option 2"
+        />
+      </div>
+      <div className="form-group">
+        <label>Option 3</label>
+        <input
+          type="text"
+          name="option3"
+          value={editingQuestion ? editingQuestion.option3 : newQuestion.option3}
+          onChange={handleInputChange}
+          placeholder="Option 3"
+        />
+      </div>
+      <div className="form-group">
+        <label>Option 4</label>
+        <input
+          type="text"
+          name="option4"
+          value={editingQuestion ? editingQuestion.option4 : newQuestion.option4}
+          onChange={handleInputChange}
+          placeholder="Option 4"
+        />
+      </div>
+    </div>
+
+    {/* Correct Answer */}
+    <div className="form-group">
+      <label>Correct Answer</label>
+      <input
+        type="text"
+        name="answer"
+        value={editingQuestion ? editingQuestion.answer : newQuestion.answer}
+        onChange={handleInputChange}
+        required
+        placeholder="Correct Answer"
+      />
+    </div>
+
+    {/* Action Buttons */}
+    <div className="form-actions">
+      <button type="submit" className="btn btn-primary">
+        {editingQuestion ? 'Update Question' : 'Add Question'}
+      </button>
+      {editingQuestion && (
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => setEditingQuestion(null)}
+        >
+          Cancel
+        </button>
+      )}
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* Questions List */}
+            <div className="section-container">
+              <h2 className="section-heading">Questions</h2>
+              <div className="questions-list">
+                {questions.map(q => (
+                  <div key={q.quesId} className="question-card">
+                    <h4 className="question-content">{q.content}</h4>
+                    <p className="question-answer">Answer: {q.answer}</p>
+                    <div className="question-options">
+                      {[q.option1, q.option2, q.option3, q.option4].map(
+                        (opt, idx) => opt && <p key={idx}>{opt}</p>
+                      )}
+                    </div>
+                    <div className="question-actions">
+                      <button onClick={() => setEditingQuestion(q)} className="btn btn-update btn-icon">
+                        <FontAwesomeIcon icon={faEdit} /> Update
+                      </button>
+                      <button onClick={() => handleDeleteQuestion(q.quesId)} className="btn btn-delete btn-icon">
+                        <FontAwesomeIcon icon={faTrashAlt} /> Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default QuestionPage;

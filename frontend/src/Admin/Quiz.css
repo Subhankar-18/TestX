@@ -36,6 +36,7 @@
 /* Cards */
 .card {
   min-height: 250px;
+  text-decoration: none !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
