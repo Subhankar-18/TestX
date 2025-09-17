@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.exams.Category;
 import com.example.demo.model.exams.Quiz;
 import com.example.demo.service.QuizService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +50,15 @@ public class QuizController
         return ResponseEntity.ok(this.quizService.getQuizzes());
     }
 
+    //get quizzes by category
+    @GetMapping("/category/{cid}")
+   public List<Quiz>getQuizzesofCategory(@PathVariable ("cid") Long cid)
+    {
+        Category category=new Category();
+        category.setCid(cid);
+        return this.quizService.getQuizzesOfCategory(category);
+    }
+
     //get single quiz
     @GetMapping("/{qid}")
     public Quiz quiz(@PathVariable("qid")Long qid)
@@ -54,10 +66,29 @@ public class QuizController
         return this.quizService.getQuiz(qid);
     }
 
+    //get active quizzes
+    @GetMapping("/active")
+       public List<Quiz>getActiveofQuizzes()
+    {
+        return this.quizService.getActiveQuizzes();
+    }
+
+    //get active quizzes by category
+    @GetMapping("/category/active/{cid}")
+       public List<Quiz>getActiveofQuizzes(@PathVariable("cid") Long cid)
+    {
+         Category c =new Category();
+         c.setCid(cid);
+        return this.quizService.getActiveQuizzesofCategory(c);
+    }
+
+
     //delete quiz
     @DeleteMapping("/{qid}")
     public void delete(@PathVariable("qid")Long qid)
     {
         this.quizService.deleteQuiz(qid);
     }
+
+
 }
