@@ -10,11 +10,13 @@ import Adminpage from './Admin/AdminPage.jsx';
 import Adminprofile from './Admin/AdminProfile.jsx';
 import Category from './Admin/Category.jsx';
 import Quiz from './Admin/Quiz.jsx';
-import Normalpage from './Normalpage.jsx';
+import Normalpage from './normal/Normalpage.jsx'; 
 import PrivateRoute from './PrivateRoute.jsx';
 import Aboutus from "./AboutUs.jsx";
 import Contact from "./ContactUs.jsx";
 import QuestionPage from './Admin/QuestionPage.jsx';
+import QuizzesByCategoryPage from './normal/QuizzesByCategoryPage.jsx'; // New Import
+import QuizTakingPage from './normal/QuizTakingPage.jsx'; // New Import
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           {/* Protected Routes - Normal User */}
           <Route element={<PrivateRoute requiredRole="NORMAL" />}>
             <Route path="/normalpage" element={<Normalpage />} />
+            <Route path="/normal/category/:cid" element={<QuizzesByCategoryPage />} />
+            <Route path="/normal/quiz/:qid" element={<QuizTakingPage />} />
           </Route>
 
           {/* Protected Routes - Admin */}
