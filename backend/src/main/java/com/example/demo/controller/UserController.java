@@ -32,16 +32,11 @@ public class UserController
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    //creating user api
+//creating user api
     @PostMapping("/")
     public User createUser(@RequestBody User user) throws Exception
-    {
-
-        //Encoding password with Bcrpt
-
+    {    //Encoding password with Bcrpt
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-
-
         Set <UserRole>roles=new HashSet<>();
         Role role=new Role();
         role.setRoleId(45L);
@@ -50,13 +45,12 @@ public class UserController
         UserRole userRole=new UserRole();
         userRole.setUser(user);
         userRole.setRole(role);
-
         roles.add(userRole);
-
         return this.userService.createUser(user, roles);
     }
 
-    //Separating Normal user from admin and dedicated endpoint
+    
+//Separating Normal user from admin and dedicated endpoint
     @PostMapping("/admin")
     public User createAdmin(@RequestBody User user) throws Exception {
     user.setPassword(this.passwordEncoder.encode(user.getPassword()));
@@ -65,22 +59,23 @@ public class UserController
     Role role = new Role();
     role.setRoleId(1L);
     role.setRoleName("ADMIN");
-
     UserRole userRole = new UserRole();
     userRole.setUser(user);
     userRole.setRole(role);
-
     roles.add(userRole);
-
     return this.userService.createUser(user, roles);
 }
 
+
+//get user by id
     @GetMapping("/{username}")
     public User getUser(@PathVariable("username")String username)
     {
         return this.userService.getUser(username);
     }
 
+   
+   
     //delete user by id
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable("userId")Long userId)

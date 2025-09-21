@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Corrected Imports
-// The file names on your disk should match these exactly.
+// Pages to navigated
 import Homepage from './HomePage.jsx'; 
 import Signup from "./SignUp.jsx"; 
 import Signin from './Signin.jsx';
@@ -11,12 +10,13 @@ import Adminprofile from './Admin/AdminProfile.jsx';
 import Category from './Admin/Category.jsx';
 import Quiz from './Admin/Quiz.jsx';
 import Normalpage from './normal/Normalpage.jsx'; 
+import Normalprofile from './normal/Normalprofile.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
 import Aboutus from "./AboutUs.jsx";
 import Contact from "./ContactUs.jsx";
 import QuestionPage from './Admin/QuestionPage.jsx';
-import QuizzesByCategoryPage from './normal/QuizzesByCategoryPage.jsx'; // New Import
-import QuizTakingPage from './normal/QuizTakingPage.jsx'; // New Import
+import QuizzesByCategoryPage from './normal/QuizzesByCategoryPage.jsx'; 
+import QuizTakingPage from './normal/QuizTakingPage.jsx'; 
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
           {/* Protected Routes - Normal User */}
           <Route element={<PrivateRoute requiredRole="NORMAL" />}>
             <Route path="/normalpage" element={<Normalpage />} />
+            <Route path="/userprofile" element={<Normalprofile />} />
             <Route path="/normal/category/:cid" element={<QuizzesByCategoryPage />} />
             <Route path="/normal/quiz/:qid" element={<QuizTakingPage />} />
           </Route>

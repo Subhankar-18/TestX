@@ -117,17 +117,6 @@ function AdminPage() {
             <div className="col-md-3 mb-3">
               <div className="card action-card shadow-sm text-center">
                 <div className="card-body">
-                  <i className="bi bi-people action-icon"></i>
-                  <h5 className="card-title">Manage Users</h5>
-                  <a href="/users" className="btn btn-outline-primary btn-sm">
-                    Go
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-3 mb-3">
-              <div className="card action-card shadow-sm text-center">
-                <div className="card-body">
                   <i className="bi bi-question-circle action-icon"></i>
                   <h5 className="card-title">Add Questions</h5>
                   <a href="/questions" className="btn btn-outline-primary btn-sm">
