@@ -12,7 +12,7 @@ const QuizTakingPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [score, setScore] = useState(null);
-  const [tabSwitched, setTabSwitched] = useState(false); // NEW
+  const [tabSwitched, setTabSwitched] = useState(false); 
   const token = localStorage.getItem("token");
 
   // Fetch quiz + questions

@@ -12,7 +12,7 @@
     height: 100%;
     background-color: rgba(0, 31, 63, 0.3); /* semi-transparent navy overlay */
     z-index: 1; /* stays behind content */
-    pointer-events: none; /* allows clicks to pass through */
+    pointer-events: none; 
 }
 
 .contactus-page .contactus-hero .text-center.position-relative {
@@ -45,6 +45,6 @@
 }
 
 .quote-box {
-    background-color:  #013c30; /* deep green for contrast */
+    background-color:  #013c30; 
     color: var(--text-light);
 }

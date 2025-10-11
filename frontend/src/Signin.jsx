@@ -26,7 +26,7 @@ const Signin = () => {
       );
       const userRole = userResponse.data.authorities[0].authority;
       
-      // FIX: Store the username in localStorage after successful authentication
+      // Store the username in localStorage after successful authentication
       localStorage.setItem("username", username); 
       localStorage.setItem("role", userRole);
 
@@ -49,7 +49,7 @@ const Signin = () => {
 
   return (
     <div className="signin-page">
-      {/* Top header with brand */}
+      {/* Top header */}
       <div className="signin-header">
         <Link to="/" className="brand-text">
           TestX

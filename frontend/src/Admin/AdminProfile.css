@@ -68,7 +68,7 @@
 
 /* Top Navbar */
 .admin-container .content .admin-top-navbar {
-    background-color: var(--deep-green); /* corporate green */
+    background-color: var(--deep-green); 
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     padding: 20px 30px;
@@ -91,7 +91,7 @@
 
 /* Glow and grow effect on hover */
 .admin-container .content .admin-top-navbar .welcome-text:hover {
-    transform: scale(1.05); /* slightly larger */
+    transform: scale(1.05); 
     text-shadow: 0 0 10px var(--light-green-accent), 0 0 20px var(--light-green-accent);
 }
 

@@ -34,7 +34,7 @@ function AboutUs() {
       {/* Content Section */}
       <div className="container py-5">
         <div className="row align-items-center">
-          {/* Left side QUOTE */}
+          {/* Left side Quote*/}
           <div className="col-md-6 d-flex justify-content-center">
             <div className="quote-box p-4 rounded shadow text-center">
                 <blockquote className="blockquote mb-0">
