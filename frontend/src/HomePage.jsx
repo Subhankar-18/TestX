@@ -27,7 +27,6 @@ function Homepage() {
       {/* Main Navbar */}
 <nav className={`navbar navbar-expand-lg main-navbar px-4 py-3 ${scrolled ? 'scrolled' : ''}`}>
   <div className="container-fluid">
-    {/* Brand */}
     <Link className="navbar-brand text-white fw-bold" to="/">
       TestX
     </Link>
@@ -80,7 +79,7 @@ function Homepage() {
         </div>
       </div>
 
-      {/* Services/Features Section - Styled like the Core Bank cards */}
+      {/* Features Section*/}
       <section className="services-overview-section py-5">
         <div className="container">
           <h2 className="text-center mb-5 text-navy">Why Choose TestX?</h2>

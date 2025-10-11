@@ -41,7 +41,6 @@ public class User implements UserDetails
     {
 
     }
-  
 
     public User(Long id, String username, String password, String firstName, String lastName, String email,
             String phone, boolean enabled) {

@@ -91,7 +91,6 @@ function AdminPage() {
         <div className="quick-actions container">
           <h4 className="mb-4">Quick Actions</h4>
           <div className="row">
-            {/* Example cards */}
             <div className="col-md-3 mb-3">
               <div className="card action-card shadow-sm text-center">
                 <div className="card-body">

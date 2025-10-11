@@ -53,7 +53,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f5fbff; /* light blue background */
+  background: #f5fbff; 
 }
 
 /* Card-style form */
@@ -121,7 +121,7 @@
   padding: 12px;
   border-radius: 8px;
   border: none;
-  background: #004d40; /* deep green */
+  background: #004d40;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -130,7 +130,7 @@
 }
 
 .signin-btn:hover {
-  background: #32cd32; /* light green */
+  background: #32cd32; 
 }
 
 /* Sign-up text */

@@ -277,20 +277,6 @@ const QuestionPage = () => {
     </div>
   </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             {/* Questions List */}
             <div className="section-container">
               <h2 className="section-heading">Questions</h2>

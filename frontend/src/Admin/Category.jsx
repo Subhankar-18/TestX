@@ -76,7 +76,7 @@ function Category() {
     setNewCategory({ title: "", description: "" });
   };
 
-  // ✅ add & update aligned with backend
+
   const handleAddOrUpdateCategory = async (e) => {
     e.preventDefault();
     try {
@@ -98,7 +98,6 @@ function Category() {
     }
   };
 
-  // ✅ delete aligned with backend
   const handleDeleteCategory = async (cid) => {
     if (window.confirm("Are you sure?")) {
       try {
