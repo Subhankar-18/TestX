@@ -13,7 +13,6 @@ import com.example.demo.service.QuestionService;
 import com.example.demo.service.QuizService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/question")
 public class QuestionController {
 

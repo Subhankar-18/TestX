@@ -12,7 +12,7 @@ function NormalPage() {
 
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8080/category/", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/category/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(response.data);

@@ -24,7 +24,7 @@ const QuestionPage = () => {
   // Fetch all quizzes
   const fetchQuizzes = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8080/quiz/', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/quiz/`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuizzes(response.data);
@@ -38,7 +38,7 @@ const QuestionPage = () => {
   const fetchQuestions = useCallback(async () => {
     if (!qid) return;
     try {
-      const response = await axios.get(`http://localhost:8080/question/quiz/all/${qid}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/question/quiz/all/${qid}`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuestions(response.data);
@@ -66,7 +66,7 @@ const QuestionPage = () => {
   const handleAddQuestion = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/question/', newQuestion, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/question/`, newQuestion, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       alert('Question added successfully!');
@@ -81,7 +81,7 @@ const QuestionPage = () => {
   const handleUpdateQuestion = async e => {
     e.preventDefault();
     try {
-      await axios.put('http://localhost:8080/question/', editingQuestion, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/question/`, editingQuestion, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       alert('Question updated successfully!');
@@ -96,7 +96,7 @@ const QuestionPage = () => {
   const handleDeleteQuestion = async quesId => {
     if (!window.confirm('Are you sure you want to delete this question?')) return;
     try {
-      await axios.delete(`http://localhost:8080/question/${quesId}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/question/${quesId}`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       alert('Question deleted successfully!');

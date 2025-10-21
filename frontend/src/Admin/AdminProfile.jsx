@@ -26,7 +26,7 @@ function AdminProfile() {
     }
 
     // Fetch api to get user details
-    fetch(`http://localhost:8080/user/${storedUsername}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/user/${storedUsername}`, {//
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",

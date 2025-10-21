@@ -27,7 +27,7 @@ function Quiz() {
   // Fetch quizzes
   const fetchQuizzes = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:8080/quiz/", {
+      const res = await axios.get( `${process.env.REACT_APP_API_URL}/quiz/`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuizzes(res.data);
@@ -41,7 +41,7 @@ function Quiz() {
   // Fetch categories for filter & select
   const fetchCategories = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:8080/category/", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/category/`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data);
@@ -113,12 +113,12 @@ function Quiz() {
     e.preventDefault();
     try {
       if (editingQuiz) {
-        await axios.put("http://localhost:8080/quiz/", newQuiz, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/quiz/`, newQuiz, {//
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Quiz updated!");
       } else {
-        await axios.post("http://localhost:8080/quiz/", newQuiz, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/quiz/`, newQuiz, {//
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Quiz added!");
@@ -133,7 +133,7 @@ function Quiz() {
   const handleDeleteQuiz = async (qid) => {
     if (window.confirm("Are you sure?")) {
       try {
-        await axios.delete(`http://localhost:8080/quiz/${qid}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/quiz/${qid}`, {//
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Quiz deleted!");
@@ -147,7 +147,7 @@ function Quiz() {
   const handleToggleActiveStatus = async (quiz) => {
     const updatedQuiz = { ...quiz, active: !quiz.active };
     try {
-      await axios.put("http://localhost:8080/quiz/", updatedQuiz, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/quiz/`, updatedQuiz, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success(updatedQuiz.active ? "Quiz published!" : "Quiz unpublished!");
@@ -163,7 +163,7 @@ function Quiz() {
         fetchQuizzes();
         return;
       }
-      const res = await axios.get(`http://localhost:8080/quiz/`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/quiz/`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       const filtered = res.data.filter((q) => q.category.cid === parseInt(cid));

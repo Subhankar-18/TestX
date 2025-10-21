@@ -14,14 +14,14 @@ const Signin = () => {
     e.preventDefault();
     try {
       const tokenResponse = await axios.post(
-        "http://localhost:8080/generate-token",
+        `${process.env.REACT_APP_API_URL}/generate-token`,//
         { username, password }
       );
       const { token } = tokenResponse.data;
       localStorage.setItem("token", token);
 
       const userResponse = await axios.get(
-        `http://localhost:8080/user/${username}`,
+        `${process.env.REACT_APP_API_URL}/user/${username}`,//
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const userRole = userResponse.data.authorities[0].authority;

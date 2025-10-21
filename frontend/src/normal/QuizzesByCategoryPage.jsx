@@ -14,7 +14,7 @@ const QuizzesByCategoryPage = () => {
     const fetchQuizzes = useCallback(async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/quiz/category/active/${cid}`,
+                `${process.env.REACT_APP_API_URL}/quiz/category/active/${cid}`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             setQuizzes(response.data);

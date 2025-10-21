@@ -35,7 +35,7 @@ function Category() {
   // fetch categories
   const fetchCategories = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:8080/category/", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/category/`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data);
@@ -81,12 +81,12 @@ function Category() {
     e.preventDefault();
     try {
       if (editingCategory) {
-        await axios.put("http://localhost:8080/category/", newCategory, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/category/`, newCategory, {//
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Category updated!");
       } else {
-        await axios.post("http://localhost:8080/category/", newCategory, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/category/`, newCategory, {//
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Category added!");
@@ -101,7 +101,7 @@ function Category() {
   const handleDeleteCategory = async (cid) => {
     if (window.confirm("Are you sure?")) {
       try {
-        await axios.delete(`http://localhost:8080/category/${cid}`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}category/${cid}`, {//
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Category deleted!");

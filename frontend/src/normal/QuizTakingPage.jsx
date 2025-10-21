@@ -19,13 +19,13 @@ const QuizTakingPage = () => {
   const fetchQuizAndQuestions = useCallback(async () => {
     setLoading(true);
     try {
-      const quizResponse = await axios.get(`http://localhost:8080/quiz/${qid}`, {
+      const quizResponse = await axios.get(`${process.env.REACT_APP_API_URL}/quiz/${qid}`, {//
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuizDetails(quizResponse.data);
 
       const questionsResponse = await axios.get(
-        `http://localhost:8080/question/quiz/${qid}`,
+        `${process.env.REACT_APP_API_URL}/question/quiz/${qid}`,//
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setQuestions(questionsResponse.data || []);

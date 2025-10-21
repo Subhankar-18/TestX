@@ -19,7 +19,7 @@ function AdminPage() {
 
       // Fetch api to get user details
     axios
-      .get(`http://localhost:8080/user/${storedUsername}`, {
+      .get(`${process.env.REACT_APP_API_URL}/user/${storedUsername}`, {//
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
