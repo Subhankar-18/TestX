@@ -51,7 +51,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             System.out.println("Invalid token hello");
         }
         
-        //Validate the toke
+        //Validate the token
 
         if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
             final UserDetails userdetails=this.userDetailsServiceImpl.loadUserByUsername(username);

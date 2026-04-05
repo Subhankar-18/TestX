@@ -7,9 +7,6 @@ function Homepage() {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
-
-console.log(`Here: ${process.env.REACT_APP_API_URL}`);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
